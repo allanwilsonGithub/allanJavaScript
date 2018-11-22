@@ -16,3 +16,18 @@ for (i in amounts){
     var withTip = addTip((amounts[i]));
     console.log(i + ": " + withTip);
 }
+
+//let , map
+let newArray = amounts.map(a => addTip(a));
+console.log(newArray)
+
+//filter
+
+function showIt(whatever){
+    console.log(whatever);
+}
+
+// All dates after 2000
+let dates = [1999, 2012, 2019, 2023]
+dates.filter(a => a =>2000).map(a => showIt(a))
+
