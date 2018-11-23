@@ -4,10 +4,15 @@
 
 var john = {
     firstname: 'John',
-    birth: 1994,
+    birthYear: 1994,
     family: ['Jane', 'Mark'],
-    isMarried: false
+    isMarried: false,
+    calcAge: function(){
+        this.age = 2018 - this.birthYear; //this
+    }
 }
 
 console.log(john.firstname); //dot notation
 console.log(john['isMarried']); //brackets notation
+john.calcAge();
+console.log(john);
