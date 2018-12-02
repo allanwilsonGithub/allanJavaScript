@@ -41,7 +41,7 @@ var billValuesJohn= [124, 48, 268, 180, 42];
 var billValuesMark= [77, 375, 110, 45];
 
 
-calcTip = function(sum){
+calcTipJohn = function(sum){
     if (sum > 0 && sum < 50){
         return sum*0.2;
     } else if (sum => 50 && sum < 200) {
@@ -53,7 +53,7 @@ calcTip = function(sum){
     }
 }
 
-calcTotal= function(sum){
+calcTotalJohn= function(sum){
     if (sum > 0 && sum < 50){
         return sum*1.2;
     } else if (sum => 50 && sum < 200) {
@@ -94,40 +94,25 @@ allTotalsJohn= [];
 allTipsMark = [];
 allTotalsMark= [];
 
-console.log('~ ~ ~ J O H N ~ ~ ~');
 
 for (i in billValuesJohn){
-    console.log('Bill:   ' + billValuesJohn[i]);
-    console.log('Tip :   ' + calcTip(billValuesJohn[i]));
-    allTipsJohn.push(calcTip(billValuesJohn[i]))
-    console.log('Total : ' + calcTotal(billValuesJohn[i]));
-    allTotalsJohn.push(calcTotal(billValuesJohn[i]));
+    allTipsJohn.push(calcTipJohn(billValuesJohn[i]))
+    allTotalsJohn.push(calcTotalJohn(billValuesJohn[i]));
 }
 
-console.log('~ ~ ~ M A R K ~ ~ ~');
 
 for (i in billValuesMark){
-    console.log('Bill:   ' + billValuesMark[i]);
-    console.log('Tip :   ' + calcTip(billValuesMark[i]));
-    allTipsMark.push(calcTip(billValuesMark[i]))
-    console.log('Total : ' + calcTotal(billValuesMark[i]));
-    allTotalsMark.push(calcTotal(billValuesMark[i]));
+    allTipsMark.push(calcTipJohn(billValuesMark[i]))
+    allTotalsMark.push(calcTotalJohn(billValuesMark[i]));
 }
-
-console.log(allTipsJohn);
-console.log(allTotalsJohn);
-console.log(allTipsMark);
-console.log(allTotalsMark);
 
 
 calcAverage = function(amounts) {
     numberOfElements = 0;
     runningTotal = 0;
     for (i in amounts) {
-        runningTotal = runningTotal + amounts[i];
+        runningTotal += amounts[i];
         numberOfElements++;
-        console.log(runningTotal);
-    console.log(numberOfElements);
     average = runningTotal / numberOfElements;
     return average;
     }
@@ -136,8 +121,6 @@ calcAverage = function(amounts) {
 tipAverageJohn = calcAverage(allTipsJohn);
 tipAverageMark = calcAverage(allTipsMark);
 
-console.log(tipAverageJohn);
-console.log(tipAverageMark);
 
 if (tipAverageJohn > tipAverageMark){
     console.log('John\'s family paid more tips on average')
