@@ -2,53 +2,40 @@ var billValuesJohn= [124, 48, 268, 180, 42];
 var billValuesMark= [77, 375, 110, 45];
 
 
-calcTipJohn = function(sum){
+calcTipTotalJohn = function(sum){
     if (sum > 0 && sum < 50){
-        return sum*0.2;
+        tip   = sum*0.2;
+        total = sum*1.2;
     } else if (sum => 50 && sum < 200) {
-        return sum*0.15;   
+        tip   = sum*0.15;
+        total = sum*1.15;
     } else if (sum >= 200) {
-        return sum*0.1;
+        tip   = sum*0.1;
+        total = sum*1.1;
     } else {
-        return 0;
+        tip   = 0;
+        total = 0;
     }
+    return [tip,total];
 }
 
-calcTotalJohn= function(sum){
-    if (sum > 0 && sum < 50){
-        return sum*1.2;
-    } else if (sum => 50 && sum < 200) {
-        return sum*1.15;   
-    } else if (sum >= 200) {
-        return sum*1.1;
-    } else {
-        return 0;
-    }
-}
-
-calcTipMark = function(sum){
+calcTipTotalMark = function(sum){
     if (sum > 0 && sum < 100){
-        return sum*0.2;
+        tip   = sum*0.2;
+        total = sum*1.2;
     } else if (sum => 100 && sum < 300) {
-        return sum*0.10;   
+        tip   = sum*0.10;
+        total = sum*1.10;
     } else if (sum >= 300) {
-        return sum*0.25;
+        tip   = sum*0.25;
+        total = sum*1.25;
     } else {
-        return 0;
+        tip   = 0;
+        total = 0;
     }
+    return [tip,total];
 }
 
-calcTotalMark= function(sum){
-    if (sum > 0 && sum < 100){
-        return sum*1.2;
-    } else if (sum => 100 && sum < 300) {
-        return sum*1.10;   
-    } else if (sum >= 300) {
-        return sum*1.25;
-    } else {
-        return 0;
-    }
-}
 
 allTipsJohn = [];
 allTotalsJohn= [];
@@ -57,15 +44,21 @@ allTotalsMark= [];
 
 
 for (i in billValuesJohn){
-    allTipsJohn.push(calcTipJohn(billValuesJohn[i]))
-    allTotalsJohn.push(calcTotalJohn(billValuesJohn[i]));
+    allTipsJohn.push(calcTipTotalJohn(billValuesJohn[i])[0]);
+    allTotalsJohn.push(calcTipTotalJohn(billValuesJohn[i])[1]);
 }
 
 
 for (i in billValuesMark){
-    allTipsMark.push(calcTipJohn(billValuesMark[i]))
-    allTotalsMark.push(calcTotalJohn(billValuesMark[i]));
+    allTipsMark.push(calcTipTotalMark(billValuesMark[i])[0]);
+    allTotalsMark.push(calcTipTotalMark(billValuesMark[i])[1]);
 }
+
+
+console.log(allTipsJohn);
+console.log(allTotalsJohn);
+console.log(allTipsMark);
+console.log(allTotalsMark);
 
 
 calcAverage = function(amounts) {
@@ -78,6 +71,7 @@ calcAverage = function(amounts) {
     return average;
     }
 }
+
 
 tipAverageJohn = calcAverage(allTipsJohn);
 tipAverageMark = calcAverage(allTipsMark);
