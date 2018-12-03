@@ -36,30 +36,8 @@ calcTipTotalMark = function(sum){
     return [tip,total];
 }
 
-
-allTipsJohn = [];
-allTotalsJohn= [];
-allTipsMark = [];
-allTotalsMark= [];
-
-
-for (i in billValuesJohn){
-    allTipsJohn.push(calcTipTotalJohn(billValuesJohn[i])[0]);
-    allTotalsJohn.push(calcTipTotalJohn(billValuesJohn[i])[1]);
-}
-
-
-for (i in billValuesMark){
-    allTipsMark.push(calcTipTotalMark(billValuesMark[i])[0]);
-    allTotalsMark.push(calcTipTotalMark(billValuesMark[i])[1]);
-}
-
-
-console.log(allTipsJohn);
-console.log(allTotalsJohn);
-console.log(allTipsMark);
-console.log(allTotalsMark);
-
+allTipsTotalsJohn = billValuesJohn.map(calcTipTotalJohn);
+allTipsTotalsMark = billValuesMark.map(calcTipTotalMark);
 
 calcAverage = function(amounts) {
     numberOfElements = 0;
@@ -72,6 +50,18 @@ calcAverage = function(amounts) {
     }
 }
 
+// My head exploded after using map so I stuck this code together to get master to pass! I am guessing it's as bulky as before :P
+
+allTipsJohn = []
+allTipsMark = []
+
+for (var i = 0; i < allTipsTotalsJohn.length; i++){
+    allTipsJohn.push(allTipsTotalsJohn[i][0]);
+}
+
+for (var i = 0; i < allTipsTotalsMark.length; i++){
+    allTipsMark.push(allTipsTotalsMark[i][0]);
+}
 
 tipAverageJohn = calcAverage(allTipsJohn);
 tipAverageMark = calcAverage(allTipsMark);
